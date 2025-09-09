@@ -1,4 +1,4 @@
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -17,20 +17,25 @@ public class GameManager : MonoBehaviour
 
     public RandomNumbers rn;
 
+    
+    public AudioSource somNumero;
+    public AudioSource somErro;
+    public AudioSource somCerto;
+    public AudioSource somSummary;
+   
+    
+
     private int result;
-
     private bool isRunning = false;
-
     private int points = 0;
+    private int currentPhase = 0;
 
     private void Start()
     {
         Debug.Log("Game Started");
         PhaseManager();
-
     }
 
-    private int currentPhase = 0;
     private void PhaseManager()
     {
         input.text = "";
@@ -40,7 +45,8 @@ public class GameManager : MonoBehaviour
         {
             rn.GenerateNums(rn.min, rn.max);
             RunNumbers(delay);
-        } else
+        }
+        else
         {
             text.text = "Fim de Jogo!";
             text.fontSize = 80;
@@ -54,11 +60,16 @@ public class GameManager : MonoBehaviour
         isRunning = true;
         text.fontSize = 150;
         CloseInputInteraction();
+
         foreach (var number in rn.GetNumbers())
         {
             Debug.Log(number);
             text.text = number.ToString();
             text.enabled = true;
+
+            if (somNumero != null)
+                somNumero.Play();
+
             await Task.Delay((int)(delay * 1000));
             text.enabled = false;
             await Task.Delay(50);
@@ -73,15 +84,18 @@ public class GameManager : MonoBehaviour
 
     public void CheckResult()
     {
-        if (isRunning) return;
+        
 
-        if (input.text == "" || input.text == null) return;
+        if (result == 0)
+        if (isRunning) return;
+        if (string.IsNullOrEmpty(input.text)) return;
 
         if (input.text == result.ToString())
         {
             text.text = "Correto!";
-            
             CloseInputInteraction();
+            if(somCerto != null)
+                somCerto.Play();
             points += 10;
             Invoke("PhaseManager", 3f);
         }
@@ -89,6 +103,8 @@ public class GameManager : MonoBehaviour
         {
             text.fontSize = 90;
             text.text = "Errado!\nResposta correta: " + result;
+            if (somErro != null)
+                somErro.Play();
             CloseInputInteraction();
             Invoke("PhaseManager", 3f);
         }
@@ -106,15 +122,21 @@ public class GameManager : MonoBehaviour
 
     private void ShowSummary()
     {
+
         text.enabled = false;
         summary.SetActive(true);
+        if (somSummary != null)
+            somSummary.Play();
         pointsText.text = "Pontos: " + points;
         difficultyText.text = "Dificuldade: " + difficulty;
-
     }
 
     public void GoToMainMenu()
     {
+       
+
         SceneManager.LoadScene("MainMenu");
     }
+
+    
 }
