@@ -1112,7 +1112,7 @@ MonoBehaviour:
   text: {fileID: 1300547556}
   input: {fileID: 567716065}
   difficulty: Normal
-  phasesNumber: 1
+  phasesNumber: 4
   summary: {fileID: 1336645833}
   pointsText: {fileID: 1540116653}
   difficultyText: {fileID: 469458453}
@@ -1121,7 +1121,6 @@ MonoBehaviour:
   somErro: {fileID: 1151550926}
   somCerto: {fileID: 1151550927}
   somSummary: {fileID: 1151550928}
-  somClick: {fileID: 0}
 --- !u!114 &1151550923
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2041,7 +2040,7 @@ RectTransform:
   m_GameObject: {fileID: 1465770555}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.0442, y: 1.0442, z: 1.0442}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2030734949}

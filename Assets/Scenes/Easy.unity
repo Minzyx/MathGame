@@ -636,7 +636,6 @@ MonoBehaviour:
   somErro: {fileID: 684028994}
   somCerto: {fileID: 684028993}
   somSummary: {fileID: 684028992}
-  somClick: {fileID: 684028991}
 --- !u!114 &684028989
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2982,7 +2981,7 @@ RectTransform:
   m_GameObject: {fileID: 2124952707}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.0619, y: 1.0619, z: 1.0619}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2053150183}
